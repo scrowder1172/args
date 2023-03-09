@@ -76,6 +76,18 @@ def only_positional_arguments(arg1: str, arg2: str, /):
     return print(f"{arg1=} {arg2=}")
 
 
+def exceeds_100_bytes(x, /) -> bool:
+    """
+    Check if argument total size is over 100 bytes
+        Return true if >100 bytes
+        Return false if !>100 bytes
+    Only accepts positional argument
+    :param x: value to check
+    :return: boolean
+    """
+    return x.__sizeof__() > 100
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -98,4 +110,8 @@ if __name__ == "__main__":
     only_positional_arguments('num1', 'num2')
     # only_positional_arguments(arg1="num1",
     #                           arg2="num2")  # returns error because function requires positional arguments
+
+    print(exceeds_100_bytes('a'))
+    print(exceeds_100_bytes({'a', 'b'}))
+
 
