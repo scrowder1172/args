@@ -88,6 +88,13 @@ def exceeds_100_bytes(x, /) -> bool:
     return x.__sizeof__() > 100
 
 
+def exceeds_100_bytes_unlimited(*args) -> bool:
+    for a in args:
+        if a.__sizeof__() > 100:
+            return True
+    return False
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -107,11 +114,16 @@ if __name__ == "__main__":
     transfer_money(from_account='1234', to_account='6578', amount=9999)
     # transfer_money('1234', '6789', 12345)  # returns error because function requires keyword arguments
 
-    only_positional_arguments('num1', 'num2')
+    only_positional_arguments('num1', 'num2')  # returns arg1='num1' arg2='num2'
     # only_positional_arguments(arg1="num1",
     #                           arg2="num2")  # returns error because function requires positional arguments
 
-    print(exceeds_100_bytes('a'))
-    print(exceeds_100_bytes({'a', 'b'}))
+    print(exceeds_100_bytes('a'))  # returns False because size is less than 100 bytes
+    print(exceeds_100_bytes({'a', 'b'}))  # returns True because size is greater than 100 bytes
+
+    print(exceeds_100_bytes_unlimited(1, 2))  # returns False because no parameter is over 100 bytes
+    print(exceeds_100_bytes_unlimited(1, 2, 484585))  # returns False because no parameter is over 100 bytes
+    print(exceeds_100_bytes_unlimited(1, 2, 484585,
+                                      {1, 2, 3, 4}))  # returns True because at least one parameter is >100 bytes
 
 
