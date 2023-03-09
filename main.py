@@ -95,6 +95,19 @@ def exceeds_100_bytes_unlimited(*args) -> bool:
     return False
 
 
+def len_new(x, /, *, no_duplicates=False):
+    """
+    Function checks the length of the first argument
+    If no_duplicates=True then function removes duplicate values and then checks length
+    :param x: value to check length of
+    :param no_duplicates: whether to ignore duplicates
+    :return: length of argument
+    """
+    if no_duplicates:
+        return print(len(list(set([a for a in x]))))
+    return print(len(x))
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -126,4 +139,6 @@ if __name__ == "__main__":
     print(exceeds_100_bytes_unlimited(1, 2, 484585,
                                       {1, 2, 3, 4}))  # returns True because at least one parameter is >100 bytes
 
-
+    len_new('abc')  # returns 3
+    len_new('aabc')  # returns 4
+    len_new('aabc', no_duplicates=True)  # returns 3
