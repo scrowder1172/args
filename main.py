@@ -24,14 +24,13 @@ def the_func(greeting, thing):
     return print(f"{greeting} {thing}")
 
 
-def multiply(a, b, *args):
+def multiply(a: int, b: int, *args: int):
     """
     Function multiplies arguments together
-        Requires at least two numeric values (a, b) and accepts an unlimited additional number of numeric values
-    Error handling needed to prevent bad data from being passed
+        Requires at least two integer values (a, b) and accepts an unlimited additional number of integer values
     :param a: numeric
     :param b: numeric
-    :param args: tuple of unlimited number of additional numeric values
+    :param args: tuple of unlimited number of additional integer values
     :return: printed multiplied result
     """
     result = a * b
@@ -55,6 +54,17 @@ def introduce(firstname, lastname, **kwargs):
     return print(introduction)
 
 
+def transfer_money(*, from_account: str, to_account: str, amount: int):
+    """
+    Only accept named arguments
+    :param from_account: account to pull funds from
+    :param to_account: account to send funds to
+    :param amount: amount to be transferred
+    :return: printed statement describing what is happening
+    """
+    return print(f"Transferring ${amount} from {from_account} to {to_account}")
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -68,5 +78,9 @@ if __name__ == "__main__":
     multiply(1, 2, 3, 4)  # returns 1 * 2 * 3 * 4 => 24
 
     introduce(firstname='mike', lastname='huls')  # returns I am Mike Huls
-    introduce(firstname='mike', lastname='huls', age=33, website='mikehuls.com')  # returns I am Mike Huls my age is 33 my website is mikehuls.com
+    introduce(firstname='mike', lastname='huls', age=33,
+              website='mikehuls.com')  # returns I am Mike Huls my age is 33 my website is mikehuls.com
+
+    transfer_money(from_account='1234', to_account='6578', amount=9999)
+    # transfer_money('1234', '6789', 12345)  # returns error because function requires keyword arguments
 
