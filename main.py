@@ -21,13 +21,28 @@ def multiply(a, b, *args):
     Error handling needed to prevent bad data from being passed
     :param a: numeric
     :param b: numeric
-    :param args: unlimited number of additional numeric values
+    :param args: tuple of unlimited number of additional numeric values
     :return: printed multiplied result
     """
     result = a * b
     for arg in args:
         result *= arg
     return print(result)
+
+
+def introduce(firstname, lastname, **kwargs):
+    """
+    Generate an introduction with firstname and lastname as well as an unlimited number of additional named parameters
+        **kwargs is parsed as a dictionary object
+    :param firstname: first name
+    :param lastname: last name
+    :param kwargs: dictionary of unlimited named parameters
+    :return: printed introduction statement
+    """
+    introduction = f"I am {firstname.capitalize()} {lastname.capitalize()}"
+    for key, value in kwargs.items():
+        introduction += f" my {key} is {value}"
+    return print(introduction)
 
 
 if __name__ == "__main__":
@@ -39,3 +54,7 @@ if __name__ == "__main__":
 
     multiply(1, 2)  # returns 1 * 2 => 2
     multiply(1, 2, 3, 4)  # returns 1 * 2 * 3 * 4 => 24
+
+    introduce(firstname='mike', lastname='huls')  # returns I am Mike Huls
+    introduce(firstname='mike', lastname='huls', age=33, website='mikehuls.com')  # returns I am Mike Huls my age is 33 my website is mikehuls.com
+
