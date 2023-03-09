@@ -4,6 +4,16 @@ https://medium.com/towards-data-science/python-args-kwargs-and-all-other-ways-to
 """
 
 
+def print_variables(var1, var2):
+    """
+    Print variable names and values
+    :param var1: first variable
+    :param var2: second variable
+    :return: print statement
+    """
+    return print(f"{var1=} {var2=}")
+
+
 def the_func(greeting, thing):
     """
     Function that prints out a greeting to a thing
@@ -46,6 +56,8 @@ def introduce(firstname, lastname, **kwargs):
 
 
 if __name__ == "__main__":
+    print_variables("a", "b")  # returns var1='a' var2='b'
+
     the_func('hello', thing='world')  # returns hello world
     the_func('world', 'hello')  # returns world hello
     the_func(greeting='hello', thing='world')  # returns hello world
