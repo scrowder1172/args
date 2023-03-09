@@ -108,6 +108,22 @@ def len_new(x, /, *, no_duplicates=False):
     return print(len(x))
 
 
+def pos_or_kw(pos_only1, pos_only2, /, pos_or_kw1, pos_or_kw2, *, kw1, kw2, **extra_kw):
+    """
+    Generate a printed statement with all the arguments and their values
+        If extra_kw is included then the additional arguments are printed as a dictionary
+    :param pos_only1: unnamed argument
+    :param pos_only2: unnamed argument
+    :param pos_or_kw1: named or unnamed argument
+    :param pos_or_kw2: named or unnamed argument
+    :param kw1: named argument
+    :param kw2: named argument
+    :param extra_kw: unlimited additional named arguments
+    :return: printed statement of each argument and value
+    """
+    print(f"{pos_only1=}, {pos_only2=}, {pos_or_kw1=}, {pos_or_kw2=}, {kw1=}, {kw2=}, {extra_kw=}")
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -142,3 +158,10 @@ if __name__ == "__main__":
     len_new('abc')  # returns 3
     len_new('aabc')  # returns 4
     len_new('aabc', no_duplicates=True)  # returns 3
+    # len_new(x='123')  # returns error because first parameter cannot be named
+
+    pos_or_kw('1', '2', pos_or_kw1=3, pos_or_kw2=4, kw1=5, kw2=6, kw3=7,
+              kw4=8)  # returns pos_only1='1', pos_only2='2', pos_or_kw1=3, pos_or_kw2=4, kw1=5, kw2=6, extra_kw={'kw3': 7, 'kw4': 8}
+    # pos_or_kw(pos_only1=1, pos_or_kw1=3, pos_or_kw2=4, kw1=5, kw2=6,
+    #           kw3=7)  # returns error because first two parameters cannot be named
+
