@@ -65,6 +65,17 @@ def transfer_money(*, from_account: str, to_account: str, amount: int):
     return print(f"Transferring ${amount} from {from_account} to {to_account}")
 
 
+def only_positional_arguments(arg1: str, arg2: str, /):
+    """
+    Example of functionl only allowing positional arguments
+        Similar to len() which doesn't allow  keyword/named argument
+    :param arg1: first value
+    :param arg2: second value
+    :return: printed statement with argument names and values
+    """
+    return print(f"{arg1=} {arg2=}")
+
+
 if __name__ == "__main__":
     print_variables("a", "b")  # returns var1='a' var2='b'
 
@@ -83,4 +94,8 @@ if __name__ == "__main__":
 
     transfer_money(from_account='1234', to_account='6578', amount=9999)
     # transfer_money('1234', '6789', 12345)  # returns error because function requires keyword arguments
+
+    only_positional_arguments('num1', 'num2')
+    # only_positional_arguments(arg1="num1",
+    #                           arg2="num2")  # returns error because function requires positional arguments
 
